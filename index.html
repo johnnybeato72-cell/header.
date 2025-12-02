@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حـيـدر🗽</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* تعريف متغيرات CSS لتسهيل التغيير */
+            --main-purple: #7f00ff;
+            --secondary-purple: #9b4dff;
+            --dark-bg: #0a0a0a;
+            --card-bg: #111;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            /* خلفية متدرجة */
+            background: linear-gradient(135deg, var(--dark-bg), #1a0a2a);
+            display: flex;
+            flex-direction: column;
+            /* تغيير ليتناسق المحتوى والفوتر */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: white;
+            /* منع شريط التمرير الأفقي غير المرغوب فيه */
+            overflow-x: hidden;
+            padding-bottom: 30px;
+            /* مسافة للفوتر الثابت */
+        }
+
+        .card {
+            background: var(--card-bg);
+            /* استخدام max-width لتحديد حجم البطاقة على الشاشات الكبيرة */
+            max-width: 400px;
+            /* استخدام عرض مرن (90% من مساحة المشاهدة) */
+            width: 90vw;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 0 25px rgba(128, 0, 255, 0.4);
+            border: 2px solid rgba(128, 0, 255, 0.4);
+            animation: glow 2s infinite alternate;
+            transition: transform 0.3s;
+            /* لضمان توسيطها بالكامل على الشاشات التي قد يكون فيها تمرير */
+            margin: 20px auto;
+            box-sizing: border-box;
+            /* لضمان التناسق في الحجم */
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 20px rgba(128, 0, 255, 0.3);
+            }
+
+            to {
+                box-shadow: 0 0 40px rgba(128, 0, 255, 0.7);
+            }
+        }
+
+        .card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid var(--secondary-purple);
+            box-shadow: 0 0 15px var(--secondary-purple);
+            margin-bottom: 20px;
+            object-fit: cover;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card img:hover {
+            transform: rotate(5deg) scale(1.05);
+            box-shadow: 0 0 25px #bb88ff;
+        }
+
+        .card h2 {
+            margin: 0 0 20px 0;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 12px 0;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--main-purple), var(--secondary-purple));
+            transition: 0.3s;
+            box-shadow: 0 0 10px rgba(155, 77, 255, 0.6);
+            width: 100%;
+            box-sizing: border-box;
+            text-align: right;
+            /* تقليل التكبير عند التحويم على الجوال */
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn span {
+            margin-left: 8px;
+            font-size: 1.2em;
+        }
+
+        .btn:hover {
+            /* تقليل التكبير على الهواتف الصغيرة لتحسين التجربة */
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(155, 77, 255, 1);
+        }
+
+        /* 👑 تنسيق الفوتر الثابت المطلوب 👑 */
+        footer {
+            /* إبقاءه ثابتاً في الأسفل */
+            position: fixed;
+            bottom: 5px;
+            right: 0;
+            left: 0;
+            text-align: center;
+            font-size: 12px;
+            opacity: 0.5;
+            color: #a37dff;
+            user-select: none;
+            /* ضمان ظهوره فوق الخلفية ولا يتأثر بالتمرير */
+            z-index: 999;
+            padding: 5px 0;
+        }
+
+        /* تنسيق الـ Modal (مربع التأكيد) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            padding: 25px 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid var(--secondary-purple);
+            max-width: 300px;
+            width: 80vw;
+            /* استخدام 80% من عرض شاشة المشاهد (أفضل للجوال) */
+            box-sizing: border-box;
+        }
+
+        .modal-content p {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .modal-content button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 45%;
+            /* جعل الأزرار تأخذ عرضاً نسبياً */
+        }
+
+        .confirm-btn {
+            background: var(--main-purple);
+            color: white;
+        }
+
+        .cancel-btn {
+            background: #555;
+            color: white;
+        }
+
+        /* إزالة معظم استعلامات الوسائط (Media Queries) والاعتماد على الخصائص النسبية */
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <img src="imgs/IMG_20251202_211704_881.jpg" alt="Profile">
+        <h2>حـيـدر🗽</h2>
+
+        <a class="btn" href="https://instagram.com/__ck0" target="_blank" data-service="انستغرام">
+            <span>📸</span>انستغرام
+        </a>
+        <a class="btn" href="https://t.me/s_7vgm" target="_blank" data-service="تليجرام">
+            <span>💬</span>تليجرام
+        </a>
+        <a class="btn" href="https://wa.me/07765346022" target="_blank" data-service="واتساب">
+            <span>🟢</span>واتساب
+        </a>
+    </div>
+
+    <footer>© جميع الحقوق محفوظة – موقع ملكية خاصة</footer>
+
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <p id="modalText">هل تريد فتح الصفحة؟</p>
+            <button class="confirm-btn" id="modalConfirm">نعم</button>
+            <button class="cancel-btn" id="modalCancel">إلغاء</button>
+        </div>
+    </div>
+
+    <script>
+        const links = document.querySelectorAll('.card .btn[target="_blank"]');
+        const modal = document.getElementById('confirmModal');
+        const modalText = document.getElementById('modalText');
+        let targetLink = '';
+
+        links.forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                targetLink = this.href;
+                const service = this.dataset.service;
+                modalText.textContent = `هل تريد فتح صفحة حيدر على ${service}?`;
+                modal.style.display = 'flex';
+            });
+        });
+
+        document.getElementById('modalConfirm').addEventListener('click', function () {
+            window.open(targetLink, '_blank');
+            modal.style.display = 'none';
+        });
+
+        document.getElementById('modalCancel').addEventListener('click', function () {
+            modal.style.display = 'none';
+            targetLink = '';
+        });
+
+        window.addEventListener('click', function (e) {
+            if (e.target == modal) modal.style.display = 'none';
+        });
+    </script>
+
+</body>
+
+</html>
